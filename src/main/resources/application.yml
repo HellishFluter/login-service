@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    url: ${POSTGRESQL_JDBC_URL:jdbc:postgresql://localhost:5432/login_service}
+    driver-class-name: ${POSTGRESQL_JDBC_DRIVER:org.postgresql.Driver}
+    username: ${POSTGRESQL_JDBC_USERNAME:admin}
+    password: ${POSTGRESQL_JDBC_PASSWORD:admin}
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: ${DDL_AUTO:validate}
+      jdbc:
+        lob:
+          non_contextual_creation: true
+      dialect: ${HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db.migration
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+server:
+  address: ${HTTP_SERVER_HOST:0.0.0.0}
+  port: ${HTTP_SERVER_PORT:8081}
+
+app:
+  allowedURLs: ${ALLOWED_URLS:https://login.weber.ru, http://localhost:3000}
+  private-key:
+    resource-path: classpath:rsa-key-private
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
