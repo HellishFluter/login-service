@@ -1,3 +1,3 @@
-# Сервис стороннего backend
+# Service for login and registrations
 
-Эмулирует сторонний backend: регистрация, хранения, пользователей, и другие действия.
+Allows you to register or login and get an authentication token
